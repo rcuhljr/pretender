@@ -1,3 +1,25 @@
+# Fork Notes
+
+This fork is maintained for use in my projects to allow you to do impersonation based on the model provided to the impersonate call, instead of being instrinsically linked to the symbol passed to `impersonates`. 
+
+In base Pretender 
+
+```ruby
+class ApplicationController < ActionController::Base
+  impersonates :user
+end
+```
+
+```
+impersonate_user(Book.first)
+```
+
+This will find the User with the same ID as the Book you provided. This fork changes this so the scenario will cause things calling your user methods to receive the Book you called impersonate on.
+
+In real world use cases this means you could have two different User Classes backing your user calls and seamlessly impersonate them without extra supporting infrastructure.
+
+More context can be found at [this PR](https://github.com/ankane/pretender/pull/58)
+
 # Pretender
 
 As an admin, there are times you want to see exactly what another user sees. Meet Pretender.
